@@ -30,10 +30,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <x-table-body />
+                    <x-render-tables :users="$users" />
                 </tbody>
             </table>
         </div>
     </div>
-    {{$users}}
 </div>

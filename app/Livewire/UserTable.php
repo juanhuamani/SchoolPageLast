@@ -42,18 +42,21 @@ class UserTable extends Component
         $role = $user->roles->pluck('name')->first();
         $cursos = $user->cursos->pluck('name');
 
-        $users = User::query();
+        $users = null ;
 
         if ($role == 'admin') {
-            $users = $users;
+            $users = User::query();
         } 
         elseif ($role == 'student') {
-            $users->whereHas('roles', function ($query) {
-                $query->where('name', 'teacher');
+            $users = User::role('teacher')->whereHas('cursos', function ($query) use ($cursos) {
+                $query->whereIn('name', $cursos);
             });
         }
-
-        dd($users->get());
+        elseif ($role == 'teacher') {
+            $users = User::role('student')->whereHas('cursos', function ($query) use ($cursos) {
+                $query->whereIn('name', $cursos);
+            });
+        }
 
         $users = $users
             ->when($this->searchName, function ($query) {

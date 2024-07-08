@@ -13,18 +13,15 @@ class RenderTables extends Component
      * Create a new component instance.
      */
     public $users;
-    public $role;
 
     /**
      * Create a new component instance.
      */
-    public function __construct( $users,  $role)
+    public function __construct( $users)
     {
         $this->users = $users->map(function ($user) {
             return $user instanceof User ? $user : new User($user);
         });
-
-        $this->role = $role;
     }
 
     /**
