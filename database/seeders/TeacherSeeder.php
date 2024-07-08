@@ -13,7 +13,7 @@ class TeacherSeeder extends Seeder
      */
     public function run(): void
     {
-        $cursos = [
+        $courses = [
             ['name' => 'Laravel'],
             ['name' => 'Vue.js'],
             ['name' => 'React.js'],
@@ -34,7 +34,7 @@ class TeacherSeeder extends Seeder
                 'password' => $teacherData['password'],
             ])->assignRole('teacher');
         
-            $courseId = ($index % count($cursos)) + 1;
+            $courseId = ($index % count($courses)) + 1;
             $teacher->cursos()->attach($courseId);
         }
     }

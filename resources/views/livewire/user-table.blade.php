@@ -2,18 +2,21 @@
     <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
         <!-- Filtros de Búsqueda -->
         <div class="mb-4">
-            <div class="grid grid-cols-4 gap-4">
+            <div class="grid grid-cols-5 gap-4 place-items-center">
                 <div>
-                    <input type="text" wire:model="searchName" placeholder="{{ __('Name') }}" class="w-full px-4 py-2 border rounded-lg" />
+                    <x-text-input id="name" type="text" name="name" autofocus  placeholder="{{ __('Name') }}" wire:model="searchName" />
                 </div>
                 <div>
-                    <input type="text" wire:model="searchEmail" placeholder="{{ __('Email') }}" class="w-full px-4 py-2 border rounded-lg" />
+                    <x-text-input id="email" type="text" name="email" autofocus  placeholder="{{ __('Email') }}" wire:model="searchEmail" />
                 </div>
                 <div>
-                    <input type="text" wire:model="searchCreate" placeholder="{{ __('Create') }}" class="w-full px-4 py-2 border rounded-lg" />
+                    <x-text-input id="create" type="text" name="create" autofocus  placeholder="{{ __('Create') }}" wire:model="searchCreate" />
                 </div>
                 <div>
-                    <input type="text" wire:model="searchRole" placeholder="{{ __('Role') }}" class="w-full px-4 py-2 border rounded-lg" />
+                    <x-text-input id="role" type="text" name="role" autofocus  placeholder="{{ __('Role') }}" wire:model="searchRole" />
+                </div>
+                <div class="">
+                    <x-primary-button wire:click="filter">Filtrar</x-primary-button>
                 </div>
             </div>
         </div>
@@ -30,7 +33,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <x-render-tables :users="$users" />
+                    @if ($users->count())
+                        <x-render-tables :users="$users" />
+                    @else
+                        <tr>
+                            <td colspan="5" class="py-4">
+                                <p class="text-center text-gray-400">No hay registros</p>
+                            </td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

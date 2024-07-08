@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\Curso;
+use App\Models\Course;
 
 class AdminSeeder extends Seeder
 {
@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
             ['name' => 'Admin', 'email' => 'admin@admin.com', 'password' => bcrypt('admin')],
         ];
 
-        $cursoIds = Curso::pluck('id')->toArray();
+        $cursoIds = Course::pluck('id')->toArray();
 
         foreach ($admins as $admin) {
             $admin = User::create([

@@ -5,7 +5,6 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\User;
-use App\Models\Curso;
 
 class UserTable extends Component
 {
@@ -16,22 +15,7 @@ class UserTable extends Component
     public $searchCreate = '';
     public $searchRole = '';
 
-    public function updatingSearchName()
-    {
-        $this->resetPage();
-    }
-
-    public function updatingSearchEmail()
-    {
-        $this->resetPage();
-    }
-
-    public function updatingSearchCreate()
-    {
-        $this->resetPage();
-    }
-
-    public function updatingSearchRole()
+    public function filter()
     {
         $this->resetPage();
     }

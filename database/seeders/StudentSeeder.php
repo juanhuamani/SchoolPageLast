@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Curso;
+use App\Models\Course;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -22,7 +22,7 @@ class StudentSeeder extends Seeder
             ['name' => 'Ana Martinez', 'email' => 'ana@student.com', 'password' => bcrypt('ana')],
         ];
 
-        $cursoIds = Curso::pluck('id')->toArray();
+        $cursoIds = Course::pluck('id')->toArray();
 
         foreach ($students as $student) {
             $student = User::create([
