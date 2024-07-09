@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Extras\VerifyEmail;
 use App\Livewire\Pages\Login;
 use App\Livewire\Pages\Logout;
 use App\Livewire\Pages\Register;
@@ -23,3 +24,5 @@ Route::middleware(['web', 'guest'])->group(function () {
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth'])
     ->name('dashboard');
+
+Route::get('/verify-email/{token}', [VerifyEmail::class, 'verifyEmail'])->name('verify-email');

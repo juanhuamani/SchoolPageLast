@@ -1,9 +1,4 @@
-<x-guest>
-    <!-- Logo-->
-    <div class="w-52 mb-10">
-        <x-application-logo />
-    </div>
-
+<x-layouts.guest>
     <!-- Session Status -->
     <div class="text-center">
         <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -43,7 +38,7 @@
                 <option value="">Select Role</option>
                 <option value="admin">Admin</option>
                 <option value="teacher">Teacher</option>
-                <option value="user">Student</option>
+                <option value="student">Student</option>
             </select>
             <x-input-error :messages="$errors->get('form.role')" class="mt-2" />
         </div>
@@ -55,4 +50,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest>
+</x-layouts.guest>

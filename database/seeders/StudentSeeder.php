@@ -39,6 +39,7 @@ class StudentSeeder extends Seeder
                 'name' => $studentData['name'],
                 'email' => $studentData['email'],
                 'password' => $studentData['password'],
+                'email_verified_at' => now(),
             ])->assignRole('student');
         
             $numberOfCourses = rand(1, 2); 

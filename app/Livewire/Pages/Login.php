@@ -25,6 +25,11 @@ class Login extends Component
         $user= Auth::getProvider()->retrieveByCredentials($credentials);
         Auth::login($user);
 
+        if ($this->form->isVerify()) {
+            return back()->with('error', ' Please verify your email first');
+        }
+        
+
         return redirect('/');
     }
 }

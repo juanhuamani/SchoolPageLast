@@ -25,6 +25,7 @@ class AdminSeeder extends Seeder
                 'name' => $admin['name'],
                 'email' => $admin['email'],
                 'password' => $admin['password'],
+                'email_verified_at' => now(),
             ])->assignRole('admin');
 
             $admin->courses()->attach($courseIds);

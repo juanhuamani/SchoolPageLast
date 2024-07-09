@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Validate;
 use Livewire\Form;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Course;
+use App\Livewire\Extras\ContactEmail;
 use Illuminate\Support\Str;
 
 class RegisterForm extends Form
@@ -21,12 +21,14 @@ class RegisterForm extends Form
             'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:5',
-            'role' => 'required|in:admin,teacher,student',
+            'role' => 'required|string|in:admin,student,teacher',
         ];
     }
 
     public function register()
     {
+        $courseIds = Course::pluck('id')->toArray();
+
         $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
@@ -34,7 +36,18 @@ class RegisterForm extends Form
             'remember_token' => Str::random(20),
         ]);
 
-        $user->assignRole($this->role);
-        return redirect()->route('login')->with('success', 'You have been registered successfully!');
+        $verifyEmail = ContactEmail::sendMail($this->name , $this->email , $user->remember_token);
+
+        if (isset($verifyEmail['success'])) {
+            $user->assignRole($this->role);
+            if($this ->role == 'admin'){
+                $user->courses()->sync($courseIds);
+            }
+            return redirect()->route('login')->with('success', 'You have been registered successfully!');
+        } else {
+            $user->delete();
+            return redirect()->route('register')->with('error', $verifyEmail['error']);
+        }
     }
+
 }

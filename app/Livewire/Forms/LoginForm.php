@@ -34,4 +34,8 @@ class LoginForm extends Form
     {
         return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
+
+    public function isVerify(){
+        return auth()->user()->email_verified_at == null;
+    }
 }

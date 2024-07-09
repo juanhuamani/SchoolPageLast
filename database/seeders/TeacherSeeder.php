@@ -32,6 +32,7 @@ class TeacherSeeder extends Seeder
                 'name' => $teacherData['name'],
                 'email' => $teacherData['email'],
                 'password' => $teacherData['password'],
+                'email_verified_at' => now(),
             ])->assignRole('teacher');
         
             $courseId = ($index % count($courses)) + 1;
