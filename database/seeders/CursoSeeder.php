@@ -13,16 +13,16 @@ class CursoSeeder extends Seeder
      */
     public function run(): void
     {
-        $cursos = [
+        $courses = [
             ['name' => 'Laravel'],
             ['name' => 'Vue.js'],
             ['name' => 'React.js'],
             ['name' => 'Angular'],
         ];
 
-        foreach ($cursos as $curso) {
+        foreach ($courses as $course) {
             Course::create([
-                'name' => $curso['name'],
+                'name' => $course['name'],
             ]);
         }
     }

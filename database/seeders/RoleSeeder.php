@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'view attendance']);
 
         $adminRole = Role::create(['name' => 'admin']);
-        $adminRole->givePermissionTo(['manage students', 'manage courses', 'manage teachers', 'manage admins', 'take attendance']);
+        $adminRole->givePermissionTo(['manage students', 'manage courses', 'manage teachers', 'manage admins']);
 
         $teacherRole = Role::create(['name' => 'teacher']);
         $teacherRole->givePermissionTo('take attendance');

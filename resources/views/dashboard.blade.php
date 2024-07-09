@@ -5,6 +5,6 @@
         </h2>
     </x-slot>
 
-    @livewire('user-table')
+    <livewire:user-table>
     
 </x-layouts.auth>

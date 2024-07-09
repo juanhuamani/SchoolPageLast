@@ -35,7 +35,7 @@ class TeacherSeeder extends Seeder
             ])->assignRole('teacher');
         
             $courseId = ($index % count($courses)) + 1;
-            $teacher->cursos()->attach($courseId);
+            $teacher->courses()->attach($courseId);
         }
     }
 }

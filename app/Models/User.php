@@ -50,7 +50,7 @@ class User extends Authenticatable
      * Get the courses that the user has.
      */
 
-    public function cursos()
+    public function courses()
     {
         return $this->belongsToMany(Course::class);
     }

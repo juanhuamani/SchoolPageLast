@@ -24,7 +24,7 @@ class UserTable extends Component
     {
         $user = auth()->user();
         $role = $user->roles->pluck('name')->first();
-        $cursos = $user->cursos->pluck('name');
+        $courses = $user->courses->pluck('name');
 
         $users = null ;
 
@@ -32,13 +32,13 @@ class UserTable extends Component
             $users = User::query();
         } 
         elseif ($role == 'student') {
-            $users = User::role('teacher')->whereHas('cursos', function ($query) use ($cursos) {
-                $query->whereIn('name', $cursos);
+            $users = User::role('teacher')->whereHas('courses', function ($query) use ($courses) {
+                $query->whereIn('name', $courses);
             });
         }
         elseif ($role == 'teacher') {
-            $users = User::role('student')->whereHas('cursos', function ($query) use ($cursos) {
-                $query->whereIn('name', $cursos);
+            $users = User::role('student')->whereHas('courses', function ($query) use ($courses) {
+                $query->whereIn('name', $courses);
             });
         }
 

@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
             ['name' => 'Admin', 'email' => 'admin@admin.com', 'password' => bcrypt('admin')],
         ];
 
-        $cursoIds = Course::pluck('id')->toArray();
+        $courseIds = Course::pluck('id')->toArray();
 
         foreach ($admins as $admin) {
             $admin = User::create([
@@ -27,7 +27,7 @@ class AdminSeeder extends Seeder
                 'password' => $admin['password'],
             ])->assignRole('admin');
 
-            $admin->cursos()->attach($cursoIds);
+            $admin->courses()->attach($courseIds);
         }
     }
 }

@@ -22,7 +22,7 @@ class StudentSeeder extends Seeder
             ['name' => 'Ana Martinez', 'email' => 'ana@student.com', 'password' => bcrypt('ana')],
         ];
 
-        $cursoIds = Course::pluck('id')->toArray();
+        $courseIds = Course::pluck('id')->toArray();
 
         foreach ($students as $student) {
             $student = User::create([
@@ -31,12 +31,12 @@ class StudentSeeder extends Seeder
                 'password' => $student['password'],
             ])->assignRole('student');
             
-            $randomCursoIds = array_rand(array_flip($cursoIds), 2);
+            $randomCursoIds = array_rand(array_flip($courseIds), 2);
             if (!is_array($randomCursoIds)) {
                 $randomCursoIds = [$randomCursoIds];
             }
 
-            $student->cursos()->attach($randomCursoIds);
+            $student->courses()->attach($randomCursoIds);
         }
     }
 }
