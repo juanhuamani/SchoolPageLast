@@ -35,6 +35,7 @@
                 <tbody>
                     @if ($users->count())
                         <x-render-tables :users="$users" />
+                        
                     @else
                         <tr>
                             <td colspan="5" class="py-4">
@@ -44,6 +45,9 @@
                     @endif
                 </tbody>
             </table>
+        </div>
+        <div class="mt-10">
+            {{ $users->links() }}
         </div>
     </div>
 </div>

@@ -14,28 +14,39 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
-
-        $students = [
+        $predefinedStudents = [
             ['name' => 'Juan Perez', 'email' => 'juan@student.com', 'password' => bcrypt('juan')],
             ['name' => 'Maria Lopez', 'email' => 'maria@student.com', 'password' => bcrypt('maria')],
             ['name' => 'Carlos Ramirez', 'email' => 'carlos@student.com', 'password' => bcrypt('carlos')],
             ['name' => 'Ana Martinez', 'email' => 'ana@student.com', 'password' => bcrypt('ana')],
         ];
-
+        
+        $numberOfAdditionalStudents = 50;
         $courseIds = Course::pluck('id')->toArray();
-
-        foreach ($students as $student) {
+        
+        $students = $predefinedStudents;
+        
+        for ($i = 1; $i <= $numberOfAdditionalStudents; $i++) {
+            $students[] = [
+                'name' => 'Student' . $i,
+                'email' => 'student' . $i . '@student.com',
+                'password' => bcrypt('password' . $i),
+            ];
+        }
+        
+        foreach ($students as $studentData) {
             $student = User::create([
-                'name' => $student['name'],
-                'email' => $student['email'],
-                'password' => $student['password'],
+                'name' => $studentData['name'],
+                'email' => $studentData['email'],
+                'password' => $studentData['password'],
             ])->assignRole('student');
-            
-            $randomCursoIds = array_rand(array_flip($courseIds), 2);
+        
+            $numberOfCourses = rand(1, 2); 
+            $randomCursoIds = array_rand(array_flip($courseIds), $numberOfCourses);
             if (!is_array($randomCursoIds)) {
                 $randomCursoIds = [$randomCursoIds];
             }
-
+        
             $student->courses()->attach($randomCursoIds);
         }
     }

@@ -57,7 +57,7 @@ class UserTable extends Component
                     $query->where('name', 'like', '%' . $this->searchRole . '%');
                 });
             })
-            ->get();
+            ->paginate(10)->withQueryString();
 
         return view('livewire.user-table', [
             'users' => $users,
