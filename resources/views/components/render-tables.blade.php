@@ -4,11 +4,5 @@
         <x-table-row>{{ $user->email }}</x-table-row>
         <x-table-row>{{ $user->created_at }}</x-table-row>
         <x-table-row class="uppercase">{{ $user->roles[0]->name }}</x-table-row>
-        <x-table-row>
-            @foreach ($user->courses as $course)
-                <span
-                    class="bg-gray-200 dark:bg-gray-800 dark:text-gray-400 px-2 py-1 rounded-full text-xs">{{ $course->name }}</span>
-            @endforeach
-        </x-table-row>
     </tr>
 @endforeach
