@@ -25,4 +25,14 @@ class Courses extends Component
             'course' => $course
         ]);
     }
+
+    public function update($name)
+    {
+        $course = Course::where('name', $name)->first();
+        return view('livewire.pages.update-course', [
+            'course' => $course
+        ]);
+    }
+
+
 }

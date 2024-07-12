@@ -16,6 +16,7 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::group(['middleware' => ['can:edit courses']], function () {
         Route::get('/courses/{name}/edit', [Courses::class, 'edit'])->name('courses.edit');
+        Route::get('/courses/{name}/update', [Courses::class, 'update'])->name('courses.update');
     });
 });
 
