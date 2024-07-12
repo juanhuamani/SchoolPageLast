@@ -5,7 +5,7 @@
                 {{ $course->name }}
             </h2>
             @if (auth()->user()->hasRole('admin'))
-                <div class="absolute right-20 top-3 flex gap-6 ">
+                <div class="absolute right-20 top-2 flex gap-6 ">
                     <a href="{{ route('courses.edit', ['name' => $course->name]) }}" class="flex gap-1 justify-center items-center">
                         <x-icons.config />Edit
                     </a>
