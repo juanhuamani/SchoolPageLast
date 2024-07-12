@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js' , 'resources/scss/app.scss'])
+        <x-head.tinymce-config/>
     </head>
     <body class="font-sans antialiased">
         @session('success')
