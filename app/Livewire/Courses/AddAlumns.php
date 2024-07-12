@@ -17,6 +17,13 @@ class AddAlumns extends Component
     {
         $this->course = $course;
     }
+
+    public function rules ()
+    {
+        return [
+            'selected_users' => 'required|array|min:1'
+        ];
+    }
     
     public function render()
     {   
@@ -40,6 +47,10 @@ class AddAlumns extends Component
     public function submit()
     {
         $selectedUsers = $this->selected_users; 
+
+        if (empty($selectedUsers)) {
+            return ;
+        }
 
         foreach ($selectedUsers as $userId) {
             $user = User::find($userId);
