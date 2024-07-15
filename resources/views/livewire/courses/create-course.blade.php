@@ -1,8 +1,22 @@
+<script>
+    tinymce.init({
+        selector: '#description',
+        allow_conditional_comments: true,
+        setup: function (editor) {
+            editor.on('init change', function () {
+                editor.save();
+            });
+            editor.on('change', function (e) {
+                var content = tinymce.activeEditor.getContent();
+                @this.set('description', content);
+            });
+        }
+    });
+</script>
+
 <div>
-    <x-primary-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-create')"
-    >{{ __('Create Course') }}</x-primary-button>
+    <x-primary-button x-data=""
+        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-create')">{{ __('Create Course') }}</x-primary-button>
 
     <x-modal name="confirm-user-create" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="createCourse" class="p-6">
@@ -14,14 +28,8 @@
             <div class="mt-6">
                 <x-input-label for="name" value="{{ __('Name') }}" class="" />
 
-                <x-text-input
-                    wire:model="name"
-                    id="name"
-                    name="name"
-                    type="text"
-                    class="mt-1 block w-3/4"
-                    placeholder="{{ __('Name') }}"
-                />
+                <x-text-input wire:model="name" id="name" name="name" type="text" class="mt-1 block w-3/4"
+                    placeholder="{{ __('Name') }}" />
 
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
@@ -29,14 +37,8 @@
             <div class="mt-6">
                 <x-input-label for="description" value="{{ __('Description') }}" class="" />
 
-                <x-text-input
-                    wire:model="description"
-                    id="nadescriptionme"
-                    name="description"
-                    type="text"
-                    class="mt-1 block w-3/4"
-                    placeholder="{{ __('Description') }}"
-                />
+                <textarea id="description" name="description" wire:model="description"
+                    placeholder="{{ __('Description') }}"></textarea>
 
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>

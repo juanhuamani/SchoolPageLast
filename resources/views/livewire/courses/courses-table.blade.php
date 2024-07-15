@@ -10,10 +10,14 @@
                     <x-text-input id="email" type="text" name="email" autofocus  placeholder="{{ __('Email') }}" wire:model="searchEmail" />
                 </div>
                 <div>
-                    <x-text-input id="create" type="text" name="create" autofocus  placeholder="{{ __('Create') }}" wire:model="searchCreate" />
+                    <x-text-input id="create" type="date" name="create" autofocus  placeholder="{{ __('Create') }}" wire:model="searchCreate" />
                 </div>
                 <div>
-                    <x-text-input id="role" type="text" name="role" autofocus  placeholder="{{ __('Role') }}" wire:model="searchRole" />
+                    <x-primary-select id="role" name="role" wire:model="searchRole">
+                        <option value="admin">Admin</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="student">Student</option>
+                    </x-primary-select>
                 </div>
                 <div class="">
                     <x-primary-button wire:click="filter">Filtrar</x-primary-button>
