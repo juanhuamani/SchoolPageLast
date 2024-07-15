@@ -16,7 +16,7 @@
             
                 @if (auth()->user()->hasPermissionTo('view attendance'))
                     <a href="{{ route('courses.attendance', ['name' => $course->name]) }}" class="flex items-center justify-center bg-gray-300 p-1 rounded cursor-pointer">
-                        <x-icons.view />  Attendances
+                        <x-icons.view /> View Attendances
                     </a>
                 @endif
             </div>            

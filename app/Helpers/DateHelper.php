@@ -18,4 +18,10 @@ class DateHelper
 
         return $daysOfWeek;
     }
+
+    public function formatDayHeader($day)
+    {
+        $formattedDay = Carbon::parse($day)->format('l');
+        return $formattedDay ;
+    }
 }

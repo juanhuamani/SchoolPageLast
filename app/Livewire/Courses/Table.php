@@ -11,11 +11,14 @@ class Table extends Component
 {
     use WithPagination;
     public $course;
-    public $weekNumber = 1;
+    public $weekNumber = 0;
     public $search = '';
-
+    
     public function filter()
     {
+        if($this->weekNumber == null) {
+            $this->weekNumber = 0;
+        }
         $this->resetPage();
     }
 
@@ -47,6 +50,7 @@ class Table extends Component
             'users' => $users,
             'week' => $week,
             'attendance' => $attendance,
+            'weekNumber' => $this->weekNumber
         ]);
     }
 }
