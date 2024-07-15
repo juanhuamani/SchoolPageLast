@@ -21,7 +21,7 @@ class StudentSeeder extends Seeder
             ['name' => 'Ana Martinez', 'email' => 'ana@student.com', 'password' => bcrypt('ana')],
         ];
         
-        $numberOfAdditionalStudents = 50;
+        $numberOfAdditionalStudents = 20;
         $courseIds = Course::pluck('id')->toArray();
         
         $students = $predefinedStudents;

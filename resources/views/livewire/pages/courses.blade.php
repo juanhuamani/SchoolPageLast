@@ -4,16 +4,22 @@
             <h2 class="font-semibold text-3xl text-gray-800 leading-tight uppercase text-center">
                 {{ $course->name }}
             </h2>
-            @if (auth()->user()->hasRole('admin'))
-                <div class="absolute right-20 top-2 flex gap-6 ">
-                    <a href="{{ route('courses.edit', ['name' => $course->name]) }}" class="flex gap-1 justify-center items-center">
-                        <x-icons.config />Edit
+            <div class="absolute right-20 top-2 flex gap-2 text-sm">
+                @if (auth()->user()->hasRole('admin'))
+                    <a href="{{ route('courses.edit', ['name' => $course->name]) }}" class="flex items-center justify-center bg-gray-300 p-1 rounded cursor-pointer">
+                        <x-icons.config /> Edit
                     </a>
-                    <a href="{{ route('courses.update', ['name' => $course->name]) }}" class="flex gap-1 justify-center items-center">
-                        <x-icons.add />Add Students
+                    <a href="{{ route('courses.update', ['name' => $course->name]) }}" class="flex items-center justify-center bg-gray-300 p-1 rounded cursor-pointer">
+                        <x-icons.add /> Add Students
                     </a>
-                </div>
-            @endif
+                @endif
+            
+                @if (auth()->user()->hasPermissionTo('view attendance'))
+                    <a href="{{ route('courses.attendance', ['name' => $course->name]) }}" class="flex items-center justify-center bg-gray-300 p-1 rounded cursor-pointer">
+                        <x-icons.view />  Attendances
+                    </a>
+                @endif
+            </div>            
         </div>
     </x-slot>
 

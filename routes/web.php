@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Extras\VerifyEmail;
+use App\Livewire\Pages\Attendance;
 use App\Livewire\Pages\Login;
 use App\Livewire\Pages\Logout;
 use App\Livewire\Pages\Register;
@@ -17,6 +18,10 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::group(['middleware' => ['can:edit courses']], function () {
         Route::get('/courses/{name}/edit', [Courses::class, 'edit'])->name('courses.edit');
         Route::get('/courses/{name}/update', [Courses::class, 'update'])->name('courses.update');
+    });
+
+    Route::group(['middleware' => ['can:view attendance']], function () {
+        Route::get('/courses/{name}/attendance', [Attendance::class, 'render'])->name('courses.attendance');
     });
 });
 
