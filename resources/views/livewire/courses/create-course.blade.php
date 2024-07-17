@@ -18,12 +18,12 @@
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
 
-            <div class="mt-6" wire:ignore>
+            <div class="mt-6">
                 <x-input-label for="description" value="{{ __('Description') }}" class="" />
-
-                <textarea id="description" name="description" wire:model.defer="description"
+                <div wire:ignore>
+                    <textarea id="description" name="description" wire:model.defer="description"
                     placeholder="{{ __('Description') }}"></textarea>
-
+                </div>
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
 
