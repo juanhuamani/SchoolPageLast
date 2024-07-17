@@ -1,19 +1,3 @@
-<script>
-    tinymce.init({
-        selector: '#description',
-        allow_conditional_comments: true,
-        setup: function (editor) {
-            editor.on('init change', function () {
-                editor.save();
-            });
-            editor.on('change', function (e) {
-                var content = tinymce.activeEditor.getContent();
-                @this.set('description', content);
-            });
-        }
-    });
-</script>
-
 <div>
     <x-primary-button x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-create')">{{ __('Create Course') }}</x-primary-button>
@@ -34,10 +18,10 @@
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
 
-            <div class="mt-6">
+            <div class="mt-6" wire:ignore>
                 <x-input-label for="description" value="{{ __('Description') }}" class="" />
 
-                <textarea id="description" name="description" wire:model="description"
+                <textarea id="description" name="description" wire:model.defer="description"
                     placeholder="{{ __('Description') }}"></textarea>
 
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
@@ -55,3 +39,21 @@
         </form>
     </x-modal>
 </div>
+
+@script
+    <script>
+        tinymce.init({
+            selector: '#description',
+            allow_conditional_comments: true,
+            setup: function (editor) {
+                editor.on('init change', function () {
+                    editor.save();
+                });
+                editor.on('change', function (e) {
+                    var content = tinymce.activeEditor.getContent();
+                    @this.set('description', content);
+                });
+            }
+        });
+    </script>
+@endscript

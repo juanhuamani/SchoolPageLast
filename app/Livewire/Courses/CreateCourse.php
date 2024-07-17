@@ -19,7 +19,6 @@ class CreateCourse extends Component
     public function createCourse()
     {
         $this->validate();
-        dd($this->name, $this->description);
         $course = new Course();
         $course->name = $this->name;
         $course->description = $this->description;
