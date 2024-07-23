@@ -8,8 +8,8 @@ class DateHelper
 {
     public static function getWeekFromNumber($weekNumber)
     {
-        $startOfMonth = Carbon::now()->startOfMonth();
-        $startOfWeek = $startOfMonth->copy()->addWeeks($weekNumber - 1)->startOfWeek();
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $startOfWeek->addWeeks($weekNumber);
         $daysOfWeek = [];
 
         for ($i = 0; $i < 7; $i++) {

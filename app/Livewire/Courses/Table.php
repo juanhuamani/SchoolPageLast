@@ -27,6 +27,19 @@ class Table extends Component
         $this->course = $course;
     }
 
+    public function lessWeek()
+    {
+        $this->weekNumber--;
+        $this->resetPage();
+    }
+
+    public function moreWeek()
+    {
+        $this->weekNumber++;
+        $this->resetPage();
+
+    }
+
     public function render()
     {
         $users = $this->course->users()
