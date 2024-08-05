@@ -4,7 +4,6 @@ import Alpine from 'alpinejs'
 window.Alpine = Alpine
  
 Alpine.start()
-
 /* Import TinyMCE */
 import tinymce from 'tinymce';
 
@@ -26,3 +25,4 @@ import 'tinymce/plugins/emoticons/js/emojis';
 import 'tinymce/plugins/link';
 import 'tinymce/plugins/lists';
 import 'tinymce/plugins/table';
+

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 class CreateCourse extends Component
 {
     public $name;
-    public $description;
+    public $description = '<p class="description"></p>';
 
     protected $rules = [
         'name' => 'required|min:6',

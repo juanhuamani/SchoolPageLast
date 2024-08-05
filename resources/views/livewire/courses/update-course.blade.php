@@ -5,11 +5,8 @@
             plugins: 'lists link image table code importcss',
             toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
             valid_elements: '*[*]', 
-            valid_styles: {
-                '*': 'color,font-size,font-weight,font-style,text-decoration,text-align' 
-            },
             importcss_append: true,
-            content_style: ['{{ asset('css/app.css') }}'],
+            content_css: "/css/app.css",
             allow_conditional_comments: true,
             setup: function (editor) {
                 editor.on('init change', function () {
@@ -23,6 +20,7 @@
         });
     </script>
 @endscript
+
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
@@ -57,3 +55,4 @@
         </div>
     </form>
 </section>
+

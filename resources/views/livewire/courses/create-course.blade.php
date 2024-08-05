@@ -21,10 +21,10 @@
             <div class="mt-6">
                 <x-input-label for="description" value="{{ __('Description') }}" class="" />
                 <div wire:ignore>
-                    <textarea id="description" name="description" wire:model.defer="description"
-                    placeholder="{{ __('Description') }}"></textarea>
+                    <x-text-input id="description" name="description" wire:model.defer="description"
+                    placeholder="{{ __('Description') }}" autocomplete="description"></x-text-input>
                 </div>
-                <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                <x-input-error :messages="$errors->get('description')" class="mt-2"/>
             </div>
 
             <div class="mt-6 flex justify-end">
@@ -44,6 +44,11 @@
     <script>
         tinymce.init({
             selector: '#description',
+            plugins: 'lists link image table code importcss',
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
+            valid_elements: '*[*]', 
+            importcss_append: true,
+            content_css: "/css/app.css",
             allow_conditional_comments: true,
             setup: function (editor) {
                 editor.on('init change', function () {
