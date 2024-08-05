@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Profile;
 
+use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-
 
 class UpdateProfileInformationForm extends Component
 {
@@ -28,16 +28,21 @@ class UpdateProfileInformationForm extends Component
     /**
      * Update the profile information for the currently authenticated user.
      */
-    public function updateProfileInformation(): void
+    public function updateProfileInformation()
     {
+        $this->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+        ]);
 
+        $user = User::find(Auth::id());
+
+        $user->update([
+            'name' => $this->name,
+            'email' => $this->email,
+        ]);
+
+        return redirect()->route('profile');
     }
 
-    /**
-     * Send an email verification notification to the current user.
-     */
-    public function sendVerification(): void
-    {
-        
-    }
 }

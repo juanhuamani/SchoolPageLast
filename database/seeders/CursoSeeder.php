@@ -23,7 +23,7 @@ class CursoSeeder extends Seeder
         foreach ($courses as $course) {
             Course::create([
                 'name' => $course['name'],
-                'description' => 'This is a course about ' . $course['name']
+                'description' => '<p class="description"> This course is ' . $course['name'] . '</p>',
             ]);
         }
     }

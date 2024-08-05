@@ -1,3 +1,28 @@
+@script
+    <script>
+        tinymce.init({
+            selector: '#description',
+            plugins: 'lists link image table code importcss',
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
+            valid_elements: '*[*]', 
+            valid_styles: {
+                '*': 'color,font-size,font-weight,font-style,text-decoration,text-align' 
+            },
+            importcss_append: true,
+            content_style: ['{{ asset('css/app.css') }}'],
+            allow_conditional_comments: true,
+            setup: function (editor) {
+                editor.on('init change', function () {
+                    editor.save();
+                });
+                editor.on('change', function (e) {
+                    var content = tinymce.activeEditor.getContent();
+                    @this.set('description', content);
+                });
+            }
+        });
+    </script>
+@endscript
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
@@ -18,7 +43,9 @@
 
         <div>
             <x-input-label for="email" :value="__('Description')" />
-            <x-text-input wire:model="description" id="description" name="description" type="text" class="mt-1 block w-full" required autocomplete="description" />
+            <div wire:ignore>
+                <x-text-input wire:model="description" id="description" name="description" type="text" class="mt-1 block w-full" required autocomplete="description" />
+            </div>
             <x-input-error class="mt-2" :messages="$errors->get('description')" />
         </div>
         <div class="flex items-center gap-4">

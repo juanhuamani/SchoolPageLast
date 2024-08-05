@@ -1,20 +1,10 @@
 <section class="space-y-6">
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Delete Course') }}
-        </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('Once your course is deleted, all of its resources and data will be permanently deleted. Before deleting your course, please download any data or information that you wish to retain.') }}
-        </p>
-    </header>
-
     <x-danger-button
         x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-course-deletion')"
+        x-on:click.prevent="$dispatch('open-modal', 'confirm-course-deletion-{{ $course->id }}')"
     >{{ __('Delete Course') }}</x-danger-button>
 
-    <x-modal name="confirm-course-deletion" :show="$errors->isNotEmpty()" focusable>
+    <x-modal name="confirm-course-deletion-{{ $course->id }}" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit.prevent="deleteCourse" class="p-6">
             <h2 class="text-lg font-medium text-gray-900">
                 {{ __('Are you sure you want to delete this course?') }}

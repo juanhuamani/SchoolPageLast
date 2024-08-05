@@ -12,8 +12,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js' , 'resources/scss/app.scss'])
-        <x-head.tinymce-config/>
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/scss/app.scss'])
     </head>
     <body class="font-sans antialiased">
         @session('success')
