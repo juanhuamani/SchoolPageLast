@@ -54,4 +54,13 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Course::class);
     }
+
+    /**
+     * Get the attendances that the user has.
+     */
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

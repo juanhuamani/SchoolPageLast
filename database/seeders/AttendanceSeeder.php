@@ -19,7 +19,7 @@ class AttendanceSeeder extends Seeder
         $courses = Course::all();
         $users = User::all();
 
-        $week = DateHelper::getWeekFromNumber(1);
+        $week = DateHelper::getWeekFromNumber(-1);
 
         foreach ($courses as $course) {
             foreach ($users as $user) {

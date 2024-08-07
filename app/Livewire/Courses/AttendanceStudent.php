@@ -24,7 +24,10 @@ class AttendanceStudent extends Component
 
     public function render()
     {
-        $users = $this->course->users()->get();
+        $users = $this->course->users()->whereDoesntHave('attendances', function ($query) {
+            $query->whereDate('date', now())->where('present', true);
+        })->get();
+        
         return view('livewire.courses.attendance-student', [
             'users' => $users
         ]);
