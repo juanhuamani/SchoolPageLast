@@ -1,6 +1,6 @@
 <div class="py-12">
     <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
-        <!-- Filtros de Búsqueda -->
+        <!-- Filter  -->
         <div class="mb-4">
             <div class="grid grid-cols-5 gap-4 place-items-center">
                 <div>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <!-- Tabla -->
+        <!-- Table -->
         <div class="relative shadow-md sm:rounded-lg overflow-hidden">
             <table class="w-full text-sm text-center text-gray-400">
                 <thead class="text-xs uppercase bg-gray-700">
@@ -39,7 +39,7 @@
                     @else
                         <tr>
                             <td colspan="5" class="py-4">
-                                <p class="text-center text-gray-400">No hay registros</p>
+                                <p class="text-center text-gray-400">{{ __('No users found') }} </p>
                             </td>
                         </tr>
                     @endif

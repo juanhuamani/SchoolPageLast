@@ -8,7 +8,7 @@ use App\Livewire\Pages\Register;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Pages\Courses;
 
-Route::middleware(['web', 'auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::view('/', 'welcome')->name('home');
     Route::get('/logout', [Logout::class, 'logout'])->name('logout');
     Route::view('profile', 'profile')->name('profile');
@@ -25,7 +25,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     });
 });
 
-Route::middleware(['web', 'guest'])->group(function () {
+Route::middleware(['guest'])->group(function () {
     Route::get('/login', Login::class)->name('login');
     Route::get('/register', Register::class)->name('register');
     Route::get('/verify-email/{token}', [VerifyEmail::class, 'verifyEmail'])->name('verify-email');
