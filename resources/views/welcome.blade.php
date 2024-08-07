@@ -10,4 +10,4 @@
         </div>
     </x-slot>
     <livewire:course-list>
-</x-layouts.auth> 
+</x-layouts.auth>

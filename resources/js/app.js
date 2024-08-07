@@ -4,8 +4,8 @@ import Alpine from 'alpinejs'
 window.Alpine = Alpine
  
 Alpine.start()
-/* Import TinyMCE */
-import tinymce from 'tinymce';
+
+import 'tinymce/tinymce';
 
 /* Default icons are required. After that, import custom icons if applicable */
 import 'tinymce/icons/default/icons.min.js';

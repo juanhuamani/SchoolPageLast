@@ -12,8 +12,8 @@ class CreateCourse extends Component
     public $description = '<p class="description"></p>';
 
     protected $rules = [
-        'name' => 'required|min:6',
-        'description' => 'required|min:10',
+        'name' => 'required|min:6|unique:courses|string|max:255',
+        'description' => 'required|min:10|max:65535|string',
     ];
 
     public function createCourse()

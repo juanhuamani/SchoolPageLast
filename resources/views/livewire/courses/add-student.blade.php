@@ -3,6 +3,7 @@
         <div class="relative flex-1">
           <x-text-input type="text" id="input-group-search" wire:model="search" placeholder="{{ __('Search student') }}"/>
         </div>
+        <x-primary-button wire:click="resetFilter" >Reset</x-primary-button>
         <x-primary-button wire:click="filter" >Search</x-primary-button>
       </div>
     <form class=" bg-white rounded-lg shadow w-full" wire:submit.prevent="submit">

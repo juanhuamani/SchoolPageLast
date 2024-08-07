@@ -17,7 +17,7 @@
     <body class="font-sans antialiased">
         @session('success')
             <div x-data="{show: true}" x-effect="setTimeout(() => show = false, 5000)" x-transition x-show="show">
-                <div class="absolute w-full animation">
+                <div class="absolute w-full animation z-50">
                     <x-nice-notification>{{ session('success') }}</x-nice-notification>
                 </div>
             </div>

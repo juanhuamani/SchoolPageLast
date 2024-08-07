@@ -1,13 +1,15 @@
 <x-layouts.guest >
-    <!-- Session Status -->
-    <div class="text-center">
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-    </div>
-
+    @if (session('error'))
+        <div x-data="{show: true}" x-effect="setTimeout(() => show = false, 5000)" x-transition x-show="show">
+            <div class="absolute w-full animation">
+                <x-bad-notification>{{ session('error') }}</x-bad-notification>
+            </div>
+        </div>
+    @endif
     <form wire:submit="login" class="">
         <!-- Email Address -->
         <div>
-            <x-input-label for="name" :value="__('Username')" />
+            <x-input-label for="name" :value="__('Username')"/>
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" autofocus
                 autocomplete="name" wire:model="form.name" />
             <x-input-error :messages="$errors->get('form.name')" class="mt-2" />

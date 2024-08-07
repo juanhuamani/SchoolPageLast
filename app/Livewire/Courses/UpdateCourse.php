@@ -4,6 +4,7 @@ namespace App\Livewire\Courses;
 
 use Livewire\Component;
 use App\Models\Course;
+use Illuminate\Support\Facades\Session;
 
 class UpdateCourse extends Component
 {
@@ -16,7 +17,7 @@ class UpdateCourse extends Component
     {
         return [
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:65535',
+            'description' => 'required|min:10|string|max:65535',
         ];
     }
 
@@ -41,9 +42,10 @@ class UpdateCourse extends Component
             $course->name = $this->name;
             $course->description = $this->description;
             $course->save();
-
+            Session::flash('success', 'Course updated successfully');
             return redirect()->route('courses',['name' => $this->name]);
         }
+        Session::flash('error', 'Course not updated');
         return redirect()->route('courses.edit',['name' => $this->name]);
     }
 }

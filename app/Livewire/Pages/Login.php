@@ -21,8 +21,7 @@ class Login extends Component
         $this->form->validate();
         $credentials = $this->form->getCredentials();
         if (!Auth::validate($credentials)) {
-            Session::flash('error', 'Invalid credentials');
-            return back();
+            return redirect()->back()->with('error', 'Invalid credentials');
         }
         $user= Auth::getProvider()->retrieveByCredentials($credentials);
         Auth::login($user);
@@ -32,7 +31,7 @@ class Login extends Component
             return back();
         }
         
-        Session::flash('success', 'Welcome back');
+        Session::flash('success', 'Welcome back '.auth()->user()->name);
         return redirect()->route('home');
     }
 }

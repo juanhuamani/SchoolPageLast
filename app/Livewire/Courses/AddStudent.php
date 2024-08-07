@@ -6,7 +6,8 @@ use Livewire\Component;
 use App\Models\User;
 use Livewire\WithPagination;
 
-class AddAlumns extends Component
+
+class AddStudent extends Component
 {
     use WithPagination;
     public $course;
@@ -24,9 +25,9 @@ class AddAlumns extends Component
             'selected_users' => 'required|array|min:1'
         ];
     }
-    
+
     public function render()
-    {   
+    {
         $courseName = $this->course->name;
         $users = User::role('student')
             ->whereDoesntHave('courses', function ($query) use ($courseName) {
@@ -34,14 +35,17 @@ class AddAlumns extends Component
             })
             ->where('name', 'like', '%' . $this->search . '%')
             ->get();
-
-        return view('livewire.courses.add-alumns', [
+        return view('livewire.courses.add-student' , [
             'users' => $users
         ]);
     }
 
     public function filter(){
         $this->resetPage();
+    }
+
+    public function resetFilter(){
+        $this->reset('search');
     }
 
     public function submit()
