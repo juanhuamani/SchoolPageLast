@@ -50,6 +50,7 @@ class AddStudent extends Component
 
     public function submit()
     {
+        $this->validate();
         $selectedUsers = $this->selected_users; 
 
         if (empty($selectedUsers)) {
